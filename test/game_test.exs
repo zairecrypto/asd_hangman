@@ -48,4 +48,23 @@ defmodule GameTest do
     end    
   end
 
+  test "get_feedback after 8 distinc wrong guesses must keep 0 remaining turns and status must be lose" do
+    with_mock Dictionary, [random_word: fn() -> "platypus" end] do
+      {:ok, pid} = Game.start_link
+      Game.submit_guess(pid, "p")
+      Game.submit_guess(pid, "a")
+      Game.submit_guess(pid, "c")
+      Game.submit_guess(pid, "f")
+      Game.submit_guess(pid, "d")
+      Game.submit_guess(pid, "e")
+      Game.submit_guess(pid, "o")
+      Game.submit_guess(pid, "w")
+      Game.submit_guess(pid, "x")
+      %{feedback: feedback, remaining_turns: r_turn, status: status} = Game.get_feedback pid
+      assert "p-a--p--" == feedback
+      assert 0          == r_turn
+      assert :lose      == status
+    end    
+  end
+
   end
