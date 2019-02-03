@@ -1,0 +1,29 @@
+git push -u origin master
+
+
+In the first part, you will implement the functions
+1. Hangman.score_guess/2 
+    - takes a tuple representing (
+        * state of a game : four elements: secret word, currect_guesses, wrong_guesses, remaining_turns) 
+        * a letter (the player’s guess) 
+    - returns the state of the game after taking into account the guess.
+===> git add -A && git commit -m "Hangman.score_guess implemented"
+
+2. Hangman.format_feedback/1 
+    - that takes a tuple representing the state of a game 
+        * generates the string with the feedback for the player (e.g. “-a—a-”).
+===> git add -A && git commit -m "Hangman.format_feedback implemented, END OF PART I"
+-----------------------------------------------
+
+In the second part, you will implement test cases to ensure 
+1. the coverage of all lines in the the implementation of GenServer-based Elixir process 
+    (which I am providing you as input) that handles the state of a game.
+===> git add -A && git commit -m "test cases of GenServer-based, END OF PART II"
+------------------------------------------------
+
+Finally, in the third part, you will implement test cases 
+1. to ensure the coverage of all lines in the implementation of a REST wrapper 
+    for our hangman game. Such wrapper could be used, for instance, in implementing 
+    a nice looking web frontend application (the latter is out of scope of the homework though).
+===> git add -A && git commit -m "test cases of REST wrapper, END OF PART III"
+    
