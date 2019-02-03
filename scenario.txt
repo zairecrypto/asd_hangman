@@ -21,9 +21,35 @@ In the second part, you will implement test cases to ensure
 ===> git add -A && git commit -m "test cases of GenServer-based, END OF PART II"
 ------------------------------------------------
 
+
+CRUD
+
+
+Verb	URI	                Comments	            Status code	    Additional
+POST	/games	            Creates a new game	    201	            (Returned headers) Location /games/:id
+GET	    /games/:id	        Retrieves game state	200	            (Returned body) State as JSON string
+POST	/games/:id/guesses	Submits player’s guess	201	            (Request body) JSON string, e.g. {"guess": "e"}
+
+
+
 Finally, in the third part, you will implement test cases 
 1. to ensure the coverage of all lines in the implementation of a REST wrapper 
     for our hangman game. Such wrapper could be used, for instance, in implementing 
     a nice looking web frontend application (the latter is out of scope of the homework though).
+
+    * GET on /games/:id (e.g. /games/123) to retrieve the current state of the corresponding game
+    * The creation of a new game is done via a POST on /games
+    * The state corresponds to the JSON -> Game.get_feedback pid
+    * POST on /games/:id/guesses to submit a guess made by the player -> Game.submit_guess(pid, guesses)
+    * When the URL is unknown, the wrapper replies with a status code 404 (resource was not found)
+    
+
+    ** NOTE:
+        + it would be possible to find also the possibility of querying each one
+          of the guesses in the game, by generaring an URL for each one of them.
+        + use other Status codes, for instance, to report other situations such 
+          as the reception of data that is not in the right format, the submission 
+          of a guess when the game is already finished
+
 ===> git add -A && git commit -m "test cases of REST wrapper, END OF PART III"
     

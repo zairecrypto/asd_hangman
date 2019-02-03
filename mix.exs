@@ -31,7 +31,8 @@ defmodule Hangman.MixProject do
       {:cowboy, "~> 2.0", override: true},
       {:plug, "~> 1.0"},
       {:mock, "~> 0.3.0", only: :test}, 
-      {:coverex, "~> 1.4.10", only: :test}
+      {:coverex, "~> 1.4.10", only: :test}, 
+      {:plug_cowboy, "~> 2.0"}
     ]
   end
 end

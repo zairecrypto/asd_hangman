@@ -1,10 +1,15 @@
 defmodule Game do
     use GenServer
 
-    def start_link() do
+    # def start_link() do
+    #     secret_word = Dictionary.random_word() |> String.trim()
+    #     GenServer.start_link(__MODULE__, secret_word)
+    # end
+
+    def start_link(name \\ Game) do
         secret_word = Dictionary.random_word() |> String.trim()
-        GenServer.start_link(__MODULE__, secret_word)
-    end
+        GenServer.start_link(__MODULE__, secret_word, name: name)
+      end
     
     def init(secret_word) do
         {:ok, {secret_word, "", "", 9}}

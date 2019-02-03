@@ -48,7 +48,7 @@ defmodule GameTest do
     end    
   end
 
-  test "get_feedback after 8 distinc wrong guesses must keep 0 remaining turns and status must be lose" do
+  test "get_feedback after 9 distinc wrong guesses -> remaining turns : 0, status : lose" do
     with_mock Dictionary, [random_word: fn() -> "platypus" end] do
       {:ok, pid} = Game.start_link
       Game.submit_guess(pid, "p")
@@ -66,5 +66,13 @@ defmodule GameTest do
       assert :lose      == status
     end    
   end
+
+    # test "initialize the Cowboy2 web server wrapped" do
+    #   {status, pid} = GameRouter.start_link
+    #   assert :error == status
+    #   assert false == is_pid(pid)
+    #   assert pid != self()
+      
+    # end
 
   end

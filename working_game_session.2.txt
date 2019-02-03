@@ -1,0 +1,5 @@
+{status, pid} = GameRouter.start_link
+opts = GameRouter.init([])
+conn = conn(:post, "/games")
+
+HTTPoison.post
