@@ -1,0 +1,51 @@
+iex(24)> {:ok, pid} = Game.start_link
+{:ok, #PID<0.353.0>}
+iex(25)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 9, status: :playing}
+iex(26)> Game.s
+start_link/0      submit_guess/2
+iex(26)> Game.submit_guess(pid, "a")
+:ok
+iex(27)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 8, status: :playing}
+iex(28)> Game.submit_guess(pid, "b")
+:ok
+iex(29)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 7, status: :playing}
+iex(30)> Game.submit_guess(pid, "c")
+:ok
+iex(31)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 6, status: :playing}
+iex(32)> Game.submit_guess(pid, "h")
+:ok
+iex(33)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 5, status: :playing}
+iex(34)> Game.submit_guess(pid, "h")
+:ok
+iex(35)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 5, status: :playing}
+iex(36)> Game.submit_guess(pid, "d")
+:ok
+iex(37)> Game.get_feedback pid
+%{feedback: "----------", remaining_turns: 4, status: :playing}
+iex(38)> Game.submit_guess(pid, "e")
+:ok
+iex(39)> Game.get_feedback pid
+%{feedback: "----e-----", remaining_turns: 3, status: :playing}
+iex(40)> Game.submit_guess(pid, "l")
+:ok
+iex(41)> Game.get_feedback pid
+%{feedback: "----e-----", remaining_turns: 2, status: :playing}
+iex(42)> Game.submit_guess(pid, "m")
+:ok
+iex(43)> Game.get_feedback pid
+%{feedback: "-m--e-----", remaining_turns: 1, status: :playing}
+iex(44)> Game.submit_guess(pid, "o")
+:ok
+iex(45)> Game.get_feedback pid
+%{
+  feedback: "-m--e---o-",
+  remaining_turns: 0,
+  secret: "impression",
+  status: :lose
+}

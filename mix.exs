@@ -15,7 +15,9 @@ defmodule Hangman.MixProject do
   def application do
     [
       applications: [:cowboy, :plug, :dictionary],
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      test_coverage: [tool: Coverex.Task], 
+      test_coverage: [tool: Coverex.Task, log: :debug]
     ]
   end
 
@@ -28,7 +30,8 @@ defmodule Hangman.MixProject do
       {:poison, "~> 3.1"},
       {:cowboy, "~> 2.0", override: true},
       {:plug, "~> 1.0"},
-      {:mock, "~> 0.3.0", only: :test}
+      {:mock, "~> 0.3.0", only: :test}, 
+      {:coverex, "~> 1.4.10", only: :test}
     ]
   end
 end
