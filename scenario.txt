@@ -12,7 +12,7 @@ In the first part, you will implement the functions
 2. Hangman.format_feedback/1 
     - that takes a tuple representing the state of a game 
         * generates the string with the feedback for the player (e.g. “-a—a-”).
-===> git add -A && git commit -m "Hangman.format_feedback implemented, END OF PART I"
+===> git add -A && git commit -m "Hangman.format_feedback implemented, 8 tests, 0 failures, END OF PART I"
 -----------------------------------------------
 
 In the second part, you will implement test cases to ensure 

@@ -83,6 +83,8 @@ defmodule Hangman do
 
     end
 
+
+
     def format_feedback(
         {
             secret_word,        # "hangman"     / "hangman"
@@ -91,6 +93,43 @@ defmodule Hangman do
             remaining_turns,    # 0             / 9
         }
         ) do
-        #retunr_value: "hang-an"    / "h------"
+
+            correct_guess_MapSet    = unic_letters correct_guesses
+            unic                    = unic_letters secret_word
+
+            cond do
+                MapSet.disjoint?(unic, correct_guess_MapSet)    -> 
+                    feedback_string = String.replace(
+                        secret_word, 
+                        unic |> MapSet.to_list, 
+                        "-"
+                        )
+                true                                            ->
+                    ms_guess = MapSet.difference(unic, correct_guess_MapSet)
+                    if MapSet.size(ms_guess) > 0 do
+                        feedback_string = String.replace(
+                            secret_word, 
+                            MapSet.to_list(ms_guess), 
+                            "-"
+                        )
+                        feedback_string
+                    else
+                        "ERROR 0001"
+                    end
+            end
     end
+
+    defp unic_letters(secret_word) do 
+        secret_word             # "ahgn" |> String.graphemes
+        |> String.graphemes     # ["a", "h", "g", "n"]
+        |> MapSet.new           # #MapSet<["a", "g", "h", "n"]>
+    end 
+
+    defp unic_letters_toString(secret_word, _) do
+        unic_letters(secret_word)
+        |> MapSet.to_list
+        |> List.to_string
+    end
+
+
 end
