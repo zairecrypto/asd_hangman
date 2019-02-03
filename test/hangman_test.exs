@@ -60,4 +60,5 @@ defmodule HangmanTest do
     assert "f-i-tsto-e" == Hangman.format_feedback({"flintstone", "etisof", "bc", 2})
     assert "-------" == Hangman.format_feedback({"hangman", "", "bcdefijkl", 0})
   end
+
 end

@@ -27,7 +27,8 @@ defmodule Hangman.MixProject do
       {:elixir_uuid, "~> 1.2"},
       {:poison, "~> 3.1"},
       {:cowboy, "~> 2.0", override: true},
-      {:plug, "~> 1.0"}
+      {:plug, "~> 1.0"},
+      {:mock, "~> 0.3.0", only: :test}
     ]
   end
 end

@@ -89,8 +89,8 @@ defmodule Hangman do
         {
             secret_word,        # "hangman"     / "hangman"
             correct_guesses,    # "ahgn"        / "h"
-            wrong_guesses,      # "bcdef"       / ""
-            remaining_turns,    # 0             / 9
+            _wrong_guesses,      # "bcdef"       / ""
+            _remaining_turns,    # 0             / 9
         }
         ) do
 
