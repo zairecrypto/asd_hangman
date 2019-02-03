@@ -19,20 +19,68 @@ defmodule Hangman do
             is_endOfGame        = (remaining_turns == 0)
 
             if is_correct_guess do
+                new_correct_guesses = 
+                    if is_endOfGame do
+                        correct_guesses
+                    else
+                        [correct_guesses | player_guess]
+                        |> List.to_string
+                        |> String.graphemes
+                        |> Enum.uniq
+                        |> List.to_string
+                    end
                 
+                new_remaining_turns =
+                    if is_memberof.(correct_guesses |> String.graphemes, player_guess) do
+                        remaining_turns
+                    else
+                        remaining_turns - 1
+                    end
+                
+                # Return value
+                {
+                    secret_word, 
+                    new_correct_guesses, 
+                    wrong_guesses, 
+                    if is_endOfGame do
+                        remaining_turns
+                    else
+                        new_remaining_turns
+                    end
+                }
             else
+
+                new_wrong_guesses = 
+                    if is_endOfGame do
+                        wrong_guesses
+                    else
+                        [wrong_guesses | player_guess]
+                        |> List.to_string
+                        |> String.graphemes
+                        |> Enum.uniq
+                        |> List.to_string
+                    end
+                
+                new_remaining_turns =
+                    if is_memberof.(wrong_guesses |> String.graphemes, player_guess) do
+                        remaining_turns
+                    else
+                        remaining_turns - 1
+                    end
+                
+                # Return value
+                {
+                    secret_word, 
+                    correct_guesses, 
+                    new_wrong_guesses, 
+                    if is_endOfGame do
+                        remaining_turns
+                    else
+                        new_remaining_turns
+                    end
+                }                
             end
 
-
-
-
-        #return_value: {"hangman", "h", "", 9} 
-        {
-            secret_word, 
-            player_guess, 
-            "", 
-            remaining_turns-1
-        } 
     end
 
     def format_feedback(

@@ -7,7 +7,7 @@ defmodule HangmanTest do
   end
   # the rest of this file can be checked in the project's code
 
-  @tag :skip
+  # @tag :skip
   test "Works with 'hangman' and one correct letter" do
     assert {_, "h", "", 8} = Hangman.score_guess({"hangman", "", "", 9}, "h")
     assert {_, "a", "", 8} = Hangman.score_guess({"hangman", "", "", 9}, "a")
@@ -16,14 +16,14 @@ defmodule HangmanTest do
     assert {_, "m", "", 8} = Hangman.score_guess({"hangman", "", "", 9}, "m")
   end
 
-  @tag :skip
+  # @tag :skip
   test "Works with 'hangman' and two correct letters" do
     assert {_, "ha", "", 7} = {"hangman", "", "", 9} |> Hangman.score_guess("h") |> Hangman.score_guess("a")
     assert {_, "ng", "", 7} = {"hangman", "", "", 9} |> Hangman.score_guess("n") |> Hangman.score_guess("g")
     assert {_, "ah", "", 7} = {"hangman", "", "", 9} |> Hangman.score_guess("a") |> Hangman.score_guess("h")
   end
 
-  @tag :skip
+  # @tag :skip
   test "Works with 'hangman' and three correct letters" do
     Enum.map(1..5, fn _ ->
       seq = Enum.take_random(~w[h a n g m], 3)
@@ -32,28 +32,28 @@ defmodule HangmanTest do
     end)
   end
 
-  @tag :skip
+  # @tag :skip
   test "Works with 'hangman'; correct and incorrect letters" do
     assert {_, "ha", "x", 6} = {"hangman", "", "", 9} |> Hangman.score_guess("h") |> Hangman.score_guess("a") |> Hangman.score_guess("x")
     assert {_, "ng", "w", 6} = {"hangman", "", "", 9} |> Hangman.score_guess("n") |> Hangman.score_guess("w") |> Hangman.score_guess("g")
     assert {_, "ah", "y", 6} = {"hangman", "", "", 9} |> Hangman.score_guess("y") |> Hangman.score_guess("a") |> Hangman.score_guess("h")
   end
 
-  @tag :skip
+  # @tag :skip
   test "Works with 'hangman'; correct, incorrect and duplicate letters" do
     assert {_, "ha", "x", 6} = {"hangman", "", "", 9} |> Hangman.score_guess("h") |> Hangman.score_guess("a") |> Hangman.score_guess("x") |> Hangman.score_guess("h")
     assert {_, "ng", "w", 6} = {"hangman", "", "", 9} |> Hangman.score_guess("n") |> Hangman.score_guess("w") |> Hangman.score_guess("w") |> Hangman.score_guess("g")
     assert {_, "ah", "y", 6} = {"hangman", "", "", 9} |> Hangman.score_guess("y") |> Hangman.score_guess("a") |> Hangman.score_guess("h") |> Hangman.score_guess("a")
   end
 
-  @tag :skip
+  # @tag :skip
   test "Works with 'hangman' and handles end of game" do
     assert {"hangman", "", "bcdefijkl", 0} = {"hangman", "", "bcdefijkl", 0} |> Hangman.score_guess("h")
     assert {"hangman", "a", "bcefijkl", 0} = {"hangman", "a", "bcefijkl", 0} |> Hangman.score_guess("n") |> Hangman.score_guess("w")
     assert {"hangman", "ahgn", "bcdef", 0} = {"hangman", "ahgn", "bcdef", 0} |> Hangman.score_guess("y")
   end
 
-  @tag :skip
+  # @tag :skip
   test "Formats feedback" do
     assert "hang-an" == Hangman.format_feedback({"hangman", "ahgn", "bcdef", 0})
     assert "--i-tst--e" == Hangman.format_feedback({"flintstone", "etis", "bc", 4})
